@@ -1,0 +1,21 @@
+﻿@if (Session["AdminID"] != null)
+{
+
+    <ul class="nav navbar-nav navbar-right ">
+        <li>@Html.ActionLink("hello " + Session["AdminID"], "Index", "Home")</li>
+        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+
+
+
+    </ul>
+    
+}
+
+
+
+
+
+
+
+
+

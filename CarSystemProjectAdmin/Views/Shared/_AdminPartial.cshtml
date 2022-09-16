@@ -1,0 +1,23 @@
+﻿@if (Session["AdminID"] != null)
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4" style="background-color:lavender;">
+            
+                    <ul class="nav text-center  ">
+                        <li>@Html.ActionLink("New Arrivals", "NewArrivals", "Home")</li>
+                    </ul>
+            </div>
+            <div class="col-sm-4" style="background-color:lavenderblush;">
+                <ul class="nav text-center  ">
+                    <li>@Html.ActionLink("Users", "AdminPanel", "Home")</li>
+                </ul>
+            </div>
+            <div class="col-sm-4" style="background-color:lavender;">
+                <ul class="nav text-center  ">
+                        <li>@Html.ActionLink("Sold Cars", "SoldCars", "Home")</li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+}

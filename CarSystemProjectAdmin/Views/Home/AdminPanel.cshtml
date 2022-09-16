@@ -1,0 +1,42 @@
+﻿@model List<CarSystemProjectAdmin.Models.UserData>
+@{
+    ViewBag.Title = "AdminPanel";
+}
+<br />
+@Html.Partial("_AdminPartial")
+<div class="text-center">
+    <h3>User Data</h3>
+</div>
+
+<div class="container">
+    <table class="table table-responsive table-hover">
+        <tr>
+            <th>User Id</th>
+            <th>User Name</th>
+            <th>User Email</th>
+            <th>User Contact</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.UserId</td>
+                    <td>@item.Username</td>
+                    <td>@item.Email</td>
+                    <td>@item.Contact</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">Edit</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </td>
+
+                </tr>
+            }
+
+    </table>
+</div>
+
+
+
