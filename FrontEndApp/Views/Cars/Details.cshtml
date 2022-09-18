@@ -1,0 +1,98 @@
+﻿@model FrontEndApp.Models.Car
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Car</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CarImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoOfOwners)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoOfOwners)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarVerified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarVerified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarSold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarSold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarUid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarUid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CarNo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
