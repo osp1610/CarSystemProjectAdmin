@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CarSystemProjectAdmin.Models
+namespace FrontUserApplication.Models
 {
     using System;
     using System.Collections.Generic;

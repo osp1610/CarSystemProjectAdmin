@@ -9,6 +9,7 @@ namespace CarSystemProjectAdmin.Controllers
 {
     public class HomeController : Controller
     {
+
         CarSystemEntities carSystemEntities=new CarSystemEntities();
         public ActionResult Index()
         {
@@ -51,7 +52,9 @@ namespace CarSystemProjectAdmin.Controllers
        //In this panel newly added cars will displayed to admin to verify and modify
         public ActionResult NewArrivals()
         {
-            var res = carSystemEntities.Cars.ToList();
+            var res = carSystemEntities.Cars.Where(item => item.CarVerified == false).ToList();
+
+           // var res = carSystemEntities.Cars.ToList();
             return View(res);
         }
 

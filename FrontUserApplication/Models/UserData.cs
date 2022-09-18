@@ -7,15 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CarSystemProjectAdmin.Models
+namespace FrontUserApplication.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminUser
+    public partial class UserData
     {
-        public int Id { get; set; }
-        public string AdminID { get; set; }
-        public string AdminPassword { get; set; }
+        public int UserId { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string Contact { get; set; }
+        public string Password { get; set; }
+        public string City { get; set; }
     }
 }

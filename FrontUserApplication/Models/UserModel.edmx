@@ -5,14 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="CarSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AdminUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AdminID" Type="nvarchar" MaxLength="200" />
-          <Property Name="AdminPassword" Type="nvarchar" MaxLength="200" />
-        </EntityType>
         <EntityType Name="Cars">
           <Key>
             <PropertyRef Name="CarNo" />
@@ -41,7 +33,6 @@
           <Property Name="City" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="CarSystemModelStoreContainer">
-          <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserData" EntityType="Self.UserData" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -50,14 +41,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CarSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AdminUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AdminID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="AdminPassword" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="CarNo" />
@@ -86,7 +69,6 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="CarSystemEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AdminUsers" EntityType="Self.AdminUser" />
           <EntitySet Name="Cars" EntityType="Self.Car" />
           <EntitySet Name="UserDatas" EntityType="Self.UserData" />
         </EntityContainer>
@@ -96,15 +78,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CarSystemModelStoreContainer" CdmEntityContainer="CarSystemEntities">
-          <EntitySetMapping Name="AdminUsers">
-            <EntityTypeMapping TypeName="CarSystemModel.AdminUser">
-              <MappingFragment StoreEntitySet="AdminUser">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
-                <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="CarSystemModel.Car">
               <MappingFragment StoreEntitySet="Cars">
