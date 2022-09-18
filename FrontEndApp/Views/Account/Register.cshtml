@@ -1,0 +1,84 @@
+﻿@model FrontUserApplication.Models.User
+@{
+    ViewBag.Title = "Register";
+}
+
+<p class="h2 text-center">Regiser User</p>
+
+
+<div class="jumbotron" >
+    <div class="row">
+        <div class="col-md-4 ">
+
+        </div>
+        <div class="col-md-4">
+
+
+            <div class="form-group-sm">
+                <form action="Register" method="post">
+                    <div>
+                        <label>User Name</label>
+                    </div>
+                    <div>
+                        <input type="text" name="UserName" placeholder="First Name" required class="form-control" />
+                    </div>
+
+                    <div>
+                        <label>Email</label>
+                    </div>
+                    <div>
+                        <input type="email" name="UserEmail" placeholder="Email" required class="form-control" />
+                    </div>
+                    <div>
+                        <label>Contact No</label>
+                    </div>
+                    <div>
+                        <input type="text" name="UserContact" placeholder="Contact No" required class="form-control " />
+                    </div>
+                    <div>
+                        <label>City</label>
+                    </div>
+                    <div>
+                        <input type="text" name="UserCity" placeholder="City" required class="form-control " />
+                    </div>
+
+                    <div>
+                        <label>Password</label>
+                    </div>
+                    <div>
+                        <input type="password" name="UserPassword" placeholder="Password" required class="form-control " />
+                    </div>
+                    <div>
+                        <label>Confirm Password</label>
+                    </div>
+                    <div>
+                        <input type="password" name="UserConfirmPassword" placeholder="Confirm Password" required class="form-control " />
+                    </div>
+                    <div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="submit" value="Register" class=" form-control btn-success" />
+
+                            </div>
+                            <div class="col-md-4">
+                                <input type="reset" value="Reset" name="Reset" class=" form-control btn-default" />
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </form>
+            </div>
+
+
+        </div>
+        <div class="col-md-4 ">
+
+        </div>
+    </div>
+    </div>
+       
+    
