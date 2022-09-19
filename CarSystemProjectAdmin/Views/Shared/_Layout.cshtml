@@ -29,9 +29,12 @@
     <div class="container body-content">
         @RenderBody()
         @RenderSection("Admin", required: false)
-        <footer style=" position: absolute; bottom: 0; width: fit-content; height: 50px;">
-            <p>&copy; @DateTime.Now.Year  Car Selling and Buying Admin Panel</p>
-        </footer>
+        <div class="container body-content">
+            <footer>
+                <hr />
+                <p>&copy; @DateTime.Now.Year  Car Selling and Buying Admin Panel</p>
+            </footer>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

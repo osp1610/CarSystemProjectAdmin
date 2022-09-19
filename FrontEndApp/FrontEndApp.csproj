@@ -175,8 +175,8 @@
     <Content Include="Images\carloginimg.jpg" />
     <Content Include="Models\UserModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UserModel.Context.cs</LastGenOutput>
       <DependentUpon>UserModel.edmx</DependentUpon>
+      <LastGenOutput>UserModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\UserModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -220,11 +220,15 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\UserHome.cshtml" />
     <Content Include="Views\Account\SellCar.cshtml" />
+    <Content Include="Views\Shared\_UserViewPartial.cshtml" />
+    <Content Include="Views\Account\BuyCar.cshtml" />
+    <Content Include="Views\Account\ConfirmBook.cshtml" />
     <Content Include="Views\Cars\Create.cshtml" />
     <Content Include="Views\Cars\Delete.cshtml" />
     <Content Include="Views\Cars\Details.cshtml" />
     <Content Include="Views\Cars\Edit.cshtml" />
     <Content Include="Views\Cars\Index.cshtml" />
+    <Content Include="Views\Account\Book.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

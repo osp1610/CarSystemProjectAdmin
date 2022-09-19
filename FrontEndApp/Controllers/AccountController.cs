@@ -1,8 +1,10 @@
 ﻿using FrontEndApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,6 +14,7 @@ namespace FrontEndApp.Controllers
     {
         // GET: Account
         CarSystemEntities carSystemEntities= new CarSystemEntities();
+      
         public ActionResult Index()
         {
             return View();
@@ -37,7 +40,7 @@ namespace FrontEndApp.Controllers
                 carSystemEntities.UserDatas.Add(userData);
                 carSystemEntities.SaveChanges();
 
-                return View(user);
+                return RedirectToAction("Login");
             }
 
 
@@ -45,7 +48,7 @@ namespace FrontEndApp.Controllers
             {
 
             }
-            return View();
+            return View(); 
         }
         public ActionResult Login()
         {
@@ -55,21 +58,35 @@ namespace FrontEndApp.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel loginModel)
         {
-            if (ModelState.IsValid)
+            try
             {
-                if (carSystemEntities.UserDatas.Where(m => m.Email == loginModel.UserName && m.Password == loginModel.Password).FirstOrDefault() != null)
+                if (ModelState.IsValid)
                 {
-                    UserData userData = new Models.UserData();
-                    Session["Email"] = loginModel.UserName;
-                    return RedirectToAction("UserHome", "Account");
-                }
-                else
-                {
+                    if (carSystemEntities.UserDatas.Where(m => m.Email == loginModel.UserName && m.Password == loginModel.Password).FirstOrDefault() != null)
+                    {
 
+                        UserData userData = new Models.UserData();
+                        Session["Email"] = loginModel.UserName;
+                        Session["res"] = loginModel.ID;
+
+                        return RedirectToAction("UserHome", "Account");
+
+                    }
+                    else
+                    {
+
+                    }
                 }
+                return View();
             }
-            return View();
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
+
+
 
         public ActionResult UserHome()
         {
@@ -93,47 +110,64 @@ namespace FrontEndApp.Controllers
                     string extension = Path.GetExtension((carDetails.ImageFile.FileName));
                     HttpPostedFileBase postedfile = carDetails.ImageFile;
                     fileName = fileName + extension;
-                    carDetails.CarImage = "~/images/" + fileName;
-                    fileName = Path.Combine(Server.MapPath("~/images/"), fileName);
+                    carDetails.CarImage = "../Images/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("../Images/"), fileName);
                     carDetails.ImageFile.SaveAs(fileName);
-
-                    //LoginModel loginModel =new LoginModel();
-                    //Car car = new Models.Car();
-                    //car.CarNo=carDetails.CarNo;
-
-                    //car.CarName = carDetails.CarName;
-                    //car.CarModel=carDetails.CarModel;
-                    //car.CarYear = carDetails.CarYear;
-                    //car.CarType = carDetails.CarType;
-                    //car.NoOfOwners= carDetails.NoOfOwners;
-                    //car.CarVerified = false;
-                    //car.CarSold = false;
-                    //car.CarUid = loginModel.ID;
-                    //car.City=carDetails.City;
-                    var Uid = carSystemEntities.UserDatas.FirstOrDefault(s => s.UserId == 1);
                     carDetails.CarVerified = false;
                     carDetails.CarSold = false;
-                    int u = Uid.UserId;
-                    carDetails.CarUid=u;
                     carSystemEntities.Cars.Add(carDetails);
                     carSystemEntities.SaveChanges();
 
                 }
 
                 }
-            catch (Exception)
+            catch (Exception e)
             {
+               
+                    throw;
 
-                throw;
+                
+                
             }
             return View();
         }
 
         public ActionResult BuyCar()
         {
-            return View();
+            var res = carSystemEntities.Cars.Where(item => item.CarVerified == true).ToList();
+
+             return View(res);
+            //var res = carSystemEntities.Cars.ToList();
         }
 
+
+       public ActionResult Book(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Car car = carSystemEntities.Cars.Find(id);
+            if (car == null)
+            {
+                return HttpNotFound();
+            }
+            return View(car);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Book([Bind(Include = "CarNo,CarImage,CarName,CarModel,CarYear,CarType,NoOfOwners,CarVerified,CarSold,CarUid,City")] Car car)
+        {
+            if (ModelState.IsValid)
+            {
+               // car.CarSold=true;
+                carSystemEntities.Entry(car).State = EntityState.Modified;
+                carSystemEntities.SaveChanges();
+                return RedirectToAction("BuyCar");
+            }
+            return View(car);
+        }
 
         public ActionResult Logout()
         {

@@ -27,5 +27,6 @@ namespace FrontEndApp.Models
     
         public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<UserData> UserDatas { get; set; }
+
     }
 }

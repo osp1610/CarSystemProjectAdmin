@@ -15,6 +15,7 @@
             <th>User Name</th>
             <th>User Email</th>
             <th>User Contact</th>
+            <th>User City</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -25,11 +26,15 @@
                     <td>@item.Username</td>
                     <td>@item.Email</td>
                     <td>@item.Contact</td>
+                    <td>@item.City</td>
                     <td>
-                        <button type="button" class="btn btn-primary">Edit</button>
+
+                        @Html.ActionLink("Edit", "UserEdit", new { id = item.UserId }, new { @class = "btn btn-primary btn-back" })
+
                     </td>
                     <td>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        @Html.ActionLink("Delete", "UserDelete", new { id = item.UserId }, new { @class = "btn btn-danger btn-back" })
+
                     </td>
 
                 </tr>

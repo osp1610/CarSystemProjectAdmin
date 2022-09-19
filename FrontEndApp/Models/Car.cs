@@ -26,6 +26,7 @@ namespace FrontEndApp.Models
         public Nullable<bool> CarSold { get; set; }
         public Nullable<int> CarUid { get; set; }
         public string City { get; set; }
+
         public HttpPostedFileBase ImageFile { get; set; }
     }
 }

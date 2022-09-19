@@ -1,7 +1,9 @@
 ﻿using CarSystemProjectAdmin.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -48,8 +50,58 @@ namespace CarSystemProjectAdmin.Controllers
             var res = carSystemEntities.UserDatas.ToList();
             return View(res);
         }
+        [HttpGet]
+        public ActionResult UserDelete(int id)
+        {
+           
+            UserData userData = carSystemEntities.UserDatas.Single(x=>x.UserId==id);
+            if (userData == null)
+            {
+                return HttpNotFound();
+            }
+            return View(userData);
+        }
 
-       //In this panel newly added cars will displayed to admin to verify and modify
+        [HttpPost, ActionName("UserDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmedUserDelete(int id)
+        {
+            UserData userData = carSystemEntities.UserDatas.Find(id);
+            carSystemEntities.UserDatas.Remove(userData);
+            carSystemEntities.SaveChanges();
+            return RedirectToAction("AdminPanel");
+        }
+
+        public ActionResult UserEdit(int id)
+        {
+            if (id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            UserData userData = carSystemEntities.UserDatas.Find(id);
+            if (userData == null)
+            {
+                return HttpNotFound();
+            }
+            return View(userData);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserEdit([Bind(Include = "UserId,Username,Email,Contact,Password,City")] UserData userData)
+        {
+            if (ModelState.IsValid)
+            {
+                carSystemEntities.Entry(userData).State = EntityState.Modified;
+                carSystemEntities.SaveChanges();
+                return RedirectToAction("AdminPanel");
+            }
+            return View(carSystemEntities);
+        }
+        
+
+
+        //In this panel newly added cars will displayed to admin to verify and modify
         public ActionResult NewArrivals()
         {
             var res = carSystemEntities.Cars.Where(item => item.CarVerified == false).ToList();
@@ -69,7 +121,7 @@ namespace CarSystemProjectAdmin.Controllers
 
                 if (updatedCustomer != null)
                 {
-                    updatedCustomer.CarSold = car.CarSold;
+                    updatedCustomer.CarVerified = true;
                     entities.SaveChanges();
                     ViewBag.Message = "Customer record updated.";
                 }

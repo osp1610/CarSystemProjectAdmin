@@ -8,13 +8,12 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("hello " + Session["Email"], "UserHome", "Account")</li>
+        <li>@Html.ActionLink("Welcome, " + Session["Email"] , "UserHome", "Account")</li>
         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
     </ul>
-    <ul class="nav navbar-nav  nav-tabs" style="margin-left:4px;">
+    <ul class="nav navbar-nav " style="margin-left:4px;">
         <li>@Html.ActionLink("Home ", "UserHome", "Account")</li>
-        <li>@Html.ActionLink("Sell Car", "SellCar", "Account")</li>
-        <li>@Html.ActionLink("Buy Car", "BuyCar", "Account")</li>
+      
 
     </ul>
 }
