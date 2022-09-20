@@ -110,40 +110,143 @@ namespace CarSystemProjectAdmin.Controllers
             return View(res);
         }
 
-        [HttpPost]
-        public ActionResult Verify(Car car)
+        public ActionResult VerifyCars(string id)
         {
-            using (CarSystemEntities entities = new CarSystemEntities())
+            if (id == null)
             {
-                Car updatedCustomer = (from c in entities.Cars
-                                            where c.CarNo == car.CarNo
-                                            select c).FirstOrDefault();
-
-                if (updatedCustomer != null)
-                {
-                    updatedCustomer.CarVerified = true;
-                    entities.SaveChanges();
-                    ViewBag.Message = "Customer record updated.";
-                }
-                else
-                {
-                    ViewBag.Message = "Customer not found.";
-                }
-
-                return View();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            Car car = carSystemEntities.Cars.Find(id);
+            if (car == null)
+            {
+                return HttpNotFound();
+            }
+            return View(car);
         }
+
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult VerifyCars([Bind(Include = "CarNo,CarImage,CarName,CarModel,CarYear,CarType,NoOfOwners,CarVerified,CarSold,CarUid,City")] Car car)
+        {
+            if (ModelState.IsValid)
+            {
+                carSystemEntities.Entry(car).State = EntityState.Modified;
+                carSystemEntities.SaveChanges();
+                return RedirectToAction("NewArrivals");
+            }
+            return View(car);
+        }
+        public ActionResult DeleteCars(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Car car = carSystemEntities.Cars.Find(id);
+            if (car == null)
+            {
+                return HttpNotFound();
+            }
+            return View(car);
+        }
+
+        // POST: Cars/Delete/5
+        [HttpPost, ActionName("DeleteCars")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            Car car = carSystemEntities.Cars.Find(id);
+            carSystemEntities.Cars.Remove(car);
+            carSystemEntities.SaveChanges();
+            return RedirectToAction("NewArrivals");
+        }
+
+
+        public ActionResult EditCars(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Car car = carSystemEntities.Cars.Find(id);
+            if (car == null)
+            {
+                return HttpNotFound();
+            }
+            return View(car);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCars([Bind(Include = "CarNo,CarImage,CarName,CarModel,CarYear,CarType,NoOfOwners,CarVerified,CarSold,CarUid,City")] Car car)
+        {
+            if (ModelState.IsValid)
+            {
+                carSystemEntities.Entry(car).State = EntityState.Modified;
+                carSystemEntities.SaveChanges();
+                return RedirectToAction("NewArrivals");
+            }
+            return View(car);
+        }
+
+        public ActionResult AddCars()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCars([Bind(Include = "CarNo,CarImage,CarName,CarModel,CarYear,CarType,NoOfOwners,CarVerified,CarSold,CarUid,City")] Car car)
+        {
+            if (ModelState.IsValid)
+            {
+                car.CarVerified = true;
+                car.CarSold = false;
+                carSystemEntities.Cars.Add(car);
+                carSystemEntities.SaveChanges();
+                return RedirectToAction("NewArrivals");
+            }
+
+            return View(car);
+        }
+
+
+
+
 
         //Here sold cars will be displyed
         public ActionResult SoldCars(Car car)
         {
-            var res = carSystemEntities.Cars.Where(item => item.CarSold == true).ToList();
-
-            //var cars = carSystemEntities.Cars;
-            //var res = cars.ToList();
-            //var res = carSystemEntities.Cars.ToList();
-
+            var res = carSystemEntities.Cars.Where(item => item.CarSold == false && item.CarVerified==true).ToList();
             return View(res);
+        }
+
+        public ActionResult SoldCar(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Car car = carSystemEntities.Cars.Find(id);
+            if (car == null)
+            {
+                return HttpNotFound();
+            }
+            return View(car);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SoldCar([Bind(Include = "CarNo,CarImage,CarName,CarModel,CarYear,CarType,NoOfOwners,CarVerified,CarSold,CarUid,City")] Car car)
+        {
+            if (ModelState.IsValid)
+            {
+                carSystemEntities.Entry(car).State = EntityState.Modified;
+                carSystemEntities.SaveChanges();
+                return RedirectToAction("SoldCars");
+            }
+            return View(car);
         }
 
         public ActionResult Logout()

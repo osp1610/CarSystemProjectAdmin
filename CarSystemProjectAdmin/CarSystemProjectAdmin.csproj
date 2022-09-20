@@ -218,9 +218,13 @@
     <Content Include="Views\Home\NewArrivals.cshtml" />
     <Content Include="Views\Home\SoldCars.cshtml" />
     <Content Include="Views\Home\UsersPanel.cshtml" />
-    <Content Include="Views\Home\Verify.cshtml" />
     <Content Include="Views\Home\UserDelete.cshtml" />
     <Content Include="Views\Home\UserEdit.cshtml" />
+    <Content Include="Views\Home\VerifyCars.cshtml" />
+    <Content Include="Views\Home\DeleteCars.cshtml" />
+    <Content Include="Views\Home\EditCars.cshtml" />
+    <Content Include="Views\Home\AddCars.cshtml" />
+    <Content Include="Views\Home\SoldCar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

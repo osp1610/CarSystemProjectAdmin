@@ -20,10 +20,8 @@
             <th>Car Type</th>
             <th>Car Owners</th>
             <th>User ID</th>
-            <th>Add Car</th>
-            <th>Edit</th>
-            <th>Delete</th>
-            <th>Verify</th>
+            <th>Sold</th>
+          
 
         </tr>
         @foreach (var item in Model)
@@ -39,19 +37,11 @@
                 <td>@item.NoOfOwners</td>
                 <td>@item.CarUid</td>
                 <td>
-                    <button type="button" class="btn btn-success">Add Car</button>
+                    @Html.ActionLink("Sold", "SoldCar", new { id = item.CarNo }, new { @class = "btn btn-success btn-back" })
 
                 </td>
 
-                <td>
-                    <button type="button" class="btn btn-primary">Edit</button>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-success">Verify</button>
-                </td>
+               
 
             </tr>
         }

@@ -8,6 +8,14 @@
 <div class="text-center">
     <h3>New Arrivals</h3>
 </div>
+
+
+<div class="nav navbar-right">
+    @Html.ActionLink("Add Car", "AddCars", null, new { @class = "btn btn-primary btn-back" })
+
+</div>
+
+
 <div class="container">
     <table class="table table-responsive table-hover">
         <tr>
@@ -19,11 +27,10 @@
             <th>Car Type</th>
             <th>Car Owners</th>
             <th>User ID</th>
-            <th>Add Car</th>
             <th>Edit</th>
             <th>Delete</th>
             <th>Verify</th>
-            
+
         </tr>
         @foreach (var item in Model)
         {
@@ -37,19 +44,17 @@
                 <td>@item.CarType</td>
                 <td>@item.NoOfOwners</td>
                 <td>@item.CarUid</td>
-                <td>
-                    <button type="button" class="btn btn-success">Add Car</button>
 
-                </td>
 
                 <td>
-                    <button type="button" class="btn btn-primary">Edit</button>
+                    @Html.ActionLink("Edit", "EditCars", new { id = item.CarNo }, new { @class = "btn btn-primary btn-back" })
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    @Html.ActionLink("Delete", "DeleteCars", new { id = item.CarNo }, new { @class = "btn btn-danger btn-back" })
                 </td>
                 <td>
-                    <button type="button" onclick="location.href='@Url.Action("Verify", "Home")'" name="Verify" class="btn btn-success">Verify</button>
+                    @Html.ActionLink("Verify", "VerifyCars", new { id = item.CarNo }, new { @class = "btn btn-success btn-back" })
+
                 </td>
 
             </tr>
