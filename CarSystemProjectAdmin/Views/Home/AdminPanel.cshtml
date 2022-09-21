@@ -4,10 +4,35 @@
 }
 <br />
 @Html.Partial("_AdminPartial")
-<div class="text-center">
-    <h3>User Data</h3>
+<div class="col-sm-offset-5">
+    <h3 >User Data</h3>
 </div>
+<div class="col-sm-offset-4">
+    @using (Html.BeginForm("AdminPanel", "Home", FormMethod.Get))
+            {
+                <table>
+                    <tr>
+                        <td>
+                            <span><b>Search By:</b></span>
+                            @Html.RadioButton("SearchBy", "Username", true)
+                            <text>Username</text>
+                            @Html.RadioButton("SearchBy", "UserId")
+                            <text>User Id</text>
+                            @Html.RadioButton("SearchBy", "City")
+                            <text>User City</text>
+                        </td>
 
+                    </tr>
+                    <tr>
+                        <td>@Html.TextBox("SearchValue", null, new { @class = "form-control", placeholder = "Enter User Data" })</td>
+                        <td> &nbsp;</td>
+                        <td><input type="submit" value="Search" class="btn btn-success" /></td>
+                    </tr>
+
+                </table>
+            }
+</div>
+<br/>
 <div class="container">
     <table class="table table-responsive table-hover">
         <tr>

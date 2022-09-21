@@ -6,9 +6,23 @@
 <br />
 @Html.Partial("_AdminPartial")
 
-<div class="text-center">
+<div class="col-sm-offset-5">
     <h3>Sold Cars</h3>
 </div>
+<div class="col-sm-offset-4">
+    @using (Html.BeginForm("AdminPanel", "Home", FormMethod.Get))
+    {
+        <table>
+            <tr>
+                <td>@Html.TextBox("SearchValue", null, new { @class = "form-control", placeholder = "Enter User Data" })</td>
+                <td> &nbsp;</td>
+                <td><input type="submit" value="Search" class="btn btn-success" /></td>
+            </tr>
+
+        </table>
+    }
+</div>
+<br />
 <div class="container">
     <table class="table table-responsive table-hover">
         <tr>
@@ -21,7 +35,7 @@
             <th>Car Owners</th>
             <th>User ID</th>
             <th>Sold</th>
-          
+
 
         </tr>
         @foreach (var item in Model)
@@ -41,7 +55,7 @@
 
                 </td>
 
-               
+
 
             </tr>
         }

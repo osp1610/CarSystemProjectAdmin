@@ -45,10 +45,42 @@ namespace CarSystemProjectAdmin.Controllers
         }
 
         //In Admin Panel All the Users Data first shown default
-        public ActionResult AdminPanel()
+        [HttpGet]
+        public ActionResult AdminPanel(string SearchBy, string SearchVal)
         {
-            var res = carSystemEntities.UserDatas.ToList();
-            return View(res);
+            try
+            {
+                var res = carSystemEntities.UserDatas.ToList();
+                if (res.Count == 0)
+                {
+                    TempData["InfoMessage"] = "User Data Invalid";
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(SearchVal))
+                    {
+                        TempData["InfoMessage"] = "User Data Invalid";
+                        return View(res);
+                    }
+                    else if(SearchBy.ToLower()== "username")
+                    {
+                        var SearchByUsername = res.Where(p => p.Username.ToLower().Contains(SearchVal.ToLower()));
+                        return View(SearchByUsername);
+                    }
+                    else if (SearchBy == "UserId")
+                    {
+                        var SearchByUsername = res.Where(p => p.City.ToLower().Contains(SearchVal.ToLower()));
+                        return View(SearchByUsername);
+                    }
+                }
+
+                return View(res);
+            }
+            catch (Exception e)
+            {
+                TempData["ErrorMsg"]=e.Message;
+                return View();
+            }
         }
         [HttpGet]
         public ActionResult UserDelete(int id)

@@ -17,6 +17,7 @@ namespace FrontEndApp.Controllers
       
         public ActionResult Index()
         {
+
             return View();
         }
 
@@ -172,7 +173,7 @@ namespace FrontEndApp.Controllers
         public ActionResult Logout()
         {
             Session.Abandon();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("UserHome", "Account");
         }
 
     }

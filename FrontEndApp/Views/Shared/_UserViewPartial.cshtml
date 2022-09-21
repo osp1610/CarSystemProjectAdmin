@@ -1,24 +1,32 @@
 ﻿@if (Session["Email"] != null)
 {
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-4" style="background-color:lavender;">
+    @*<div class="row">
+        <div>
+            @Html.ActionLink("Buy Cars", "BuyCar", "Account", new {@class= "bg-danger" })
+        </div>
+    </div>*@
 
-                <ul class="nav text-center  ">
+
+
+    @*<div class="container-fluid" style="margin-top:4px; margin-bottom:4px;">
+        <div class="row">
+            <div class="col-sm-4" style="background-color:black;">
+
+                <ul class=" text-center m-4 ">
                     <li>@Html.ActionLink("Buy Cars", "BuyCar", "Account")</li>
                 </ul>
             </div>
-            <div class="col-sm-4" style="background-color:lavenderblush;">
+            <div class="col-sm-4" style="background-color:lightblue;">
                 <ul class="nav text-center  ">
                     <li>@Html.ActionLink("Home", "UserHome", "Account")</li>
                 </ul>
             </div>
-            <div class="col-sm-4" style="background-color:lavender;">
+            <div class="col-sm-4 bg-light">
                 <ul class="nav text-center  ">
                     <li>@Html.ActionLink("Sell Cars", "SellCar", "Account")</li>
                 </ul>
             </div>
         </div>
-    </div>
+    </div>*@
 }
 

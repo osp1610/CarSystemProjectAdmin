@@ -1,0 +1,120 @@
+﻿ *{
+    scroll-behavior: smooth;
+}
+
+.carousel-caption {
+    position: absolute;
+    z-index: 20;
+    bottom: 50%;
+}
+
+.carousel-item img {
+    height: 90vh;
+}
+
+.card {
+    transition-duration: 0.4s;
+}
+
+.card1:hover {
+    transform: translate(0px,-10px);
+    box-shadow: rgba(0,0,0,0.2) 0px 10px 10px 0px;
+}
+
+.card2 {
+    overflow: hidden;
+    transition-duration: 0.4s;
+}
+
+    .card2:hover {
+        transform: scale(1.1);
+    }
+
+.card3 {
+    overflow: hidden
+}
+
+    .card3 .card-img-top {
+        transition-duration: 0.4s;
+    }
+
+    .card3:hover > .card-img-top {
+        transform: scale(1.2);
+    }
+
+
+.hover-1 img {
+    width: 105% !important;
+    position: absolute;
+    top: 0;
+    Top: -5% !important;
+    transition: all 0.4s;
+}
+
+.hover-1-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    transition: all 0.4s;
+}
+
+.hover-1-description {
+    transform: translateY(20px);
+    transition: all 0.4s;
+    opacity: 0;
+}
+
+.hover-1:hover .hover-1-content {
+    bottom: 28px;
+}
+
+.hover-1:hover .hover-1-description {
+    opacity: 1
+}
+
+.hover-1:hover img {
+    Top: 0 !important;
+}
+
+.hover-1:hover .hover-overlay {
+    background: rgb(0, 0, 0, 0.79);
+}
+
+.hover {
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 60%;
+}
+
+.hover-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 90;
+    transition: all 0.4s;
+    opacity: 90;
+    background: rgb(0, 0, 0, 0.2);
+}
+
+
+.hover-content {
+    position: relative;
+    z-index: 99;
+}
+
+
+
+.footer-link {
+    text-decoration: none;
+    color: aliceblue !important;
+    transition: all 0.3s;
+}
+
+    .footer-link:hover {
+        text-decoration: none;
+        color: cornflowerblue !important;
+    }
+ 

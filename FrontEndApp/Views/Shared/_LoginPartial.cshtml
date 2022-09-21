@@ -1,21 +1,45 @@
 ﻿@if (Session["Email"] == null)
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account")</li>
-        <li>@Html.ActionLink("Login", "Login", "Account")</li>
-    </ul>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+        <ul class="navbar-nav m1-auto flex-grow-1">
+            <li class="nav-item">
+                @Html.ActionLink("Register", "Register", "Account", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Login", "Login", "Account", new { @class = "nav-link" })
+            </li>
+
+
+        </ul>
+    </div>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Welcome, " + Session["Email"] , "UserHome", "Account")</li>
-        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
-    </ul>
-    <ul class="nav navbar-nav " style="margin-left:4px;">
-        <li>@Html.ActionLink("Home ", "UserHome", "Account")</li>
-      
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+        <ul class="navbar-nav m1-auto flex-grow-1">
+            <li class="nav-item btn btn-danger">
+                @Html.ActionLink("Home ", "UserHome", "Account", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item btn btn-danger">
+                @Html.ActionLink("Buy Car", "BuyCar", "Account", new { @class = "nav-link " })
+            </li>
+            <li class="nav-item btn btn-danger">
+                @Html.ActionLink("Sell Car", "SellCar", "Account", new { @class = "nav-link " })
+            </li>
+            <li class="nav-item btn btn-primary">
+                @Html.ActionLink("Welcome, " + Session["Email"], "UserHome", "Account", new { @class = "nav-link " })
+            </li>
+            <li class="nav-item btn btn-danger">
+                @Html.ActionLink("Logout", "Logout", "Account", new { @class = "nav-link" })
+            </li>
 
-    </ul>
+
+
+        </ul>
+    </div>
+
+
+ 
 }
 
 

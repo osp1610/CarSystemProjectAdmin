@@ -3,11 +3,11 @@
 @{
     ViewBag.Title = "BuyCar";
 }
-<br />
+ 
 @Html.Partial("_UserViewPartial")
 
 <h2 class="text-center">Buy Car</h2>
-<div class="jumbotron">
+<div class="jumbotron ">
 
     <div class="container">
         <table class="table table-responsive table-hover">
@@ -20,6 +20,7 @@
                 <th>Car Type</th>
                 <th>Car Owners</th>
                 <th>City</th>
+                <th>Appoinment</th>
 
             </tr>
             @foreach (var item in Model)
@@ -27,7 +28,7 @@
                 <tr>
                     <td>@item.CarNo</td>
 
-                    <td><img src="@Html.DisplayFor(modelitem=>item.CarImage)" width="100px" height="100px" /></td>
+                    <td><img src="@Html.DisplayFor(modelitem=>item.CarImage)" style="width: 100px; height:100px"   /></td>
                     <td>@item.CarName</td>
                     <td>@item.CarModel</td>
 
@@ -40,9 +41,8 @@
 
 
                     <td>
-                        <a class="btn btn-default btn-sm"  onclick="Details(id = item.CarNo)">Book Appoinment1</a>
 
-                        @Html.ActionLink("Book Appoinment", "Book", new { id = item.CarNo })
+                        @Html.ActionLink("Book Appoinment", "Book", new { id = item.CarNo }, new {@class="btn btn-danger"})
                     </td>
 
 
